@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //BUTTON
             //============================================================
             Text(
-              'You have pushed the button this many times:',
+              'Hi, Satit. You have pushed the button this many times:',
             ),
             Text(
               '$_counter',
