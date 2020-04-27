@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hellotest03/screens/CallApiDogPage.dart';
+import 'package:hellotest03/screens/CallApiUserPage.dart';
 import 'package:hellotest03/screens/LayoutPage.dart';
 import 'package:hellotest03/screens/MenuPage.dart';
+import 'package:hellotest03/screens/RegisterProduct.dart';
 import 'package:hellotest03/screens/SearchPage.dart';
+import 'package:hellotest03/screens/SearchProductPage.dart';
 import 'package:hellotest03/screens/SignupPage.dart';
 import 'package:hellotest03/screens/StackPage.dart';
+import 'package:hellotest03/screens/StackPage2.dart';
+import 'package:hellotest03/screens/UploadImagePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Demo, My satit'),
+      home: MyHomePage(title: 'Demo, My satit. please ask me the manual'),
     );
   }
 }
@@ -79,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ListView(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -94,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             //============================================================
             //BUTTON
@@ -126,6 +132,15 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Stack Page'),
             ),
+               RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => StackPage2()),
+                );
+              },
+              child: Text('Stack Page 2'),
+            ),
             RaisedButton(
               onPressed: () {
                 Navigator.push(
@@ -134,6 +149,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               child: Text('Search Page'),
+            ),
+               RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchProductPage(productid: '1')),
+                );
+              },
+              child: Text('Search Product Page'),
             ),
             RaisedButton(
               onPressed: () {
@@ -144,6 +168,26 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('SingUp Page'),
             ),
+             RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterProductPage()),
+                );
+              },
+              child: Text('Product Page'),
+            ),
+              RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UploadImagePage()),
+                );
+              },
+              child: Text('Upload Image'),
+            ),
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CallApiUserPage()),);}, child: Text('Call Api User'),),   
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CallApiDogPage()),);}, child: Text('Call Api Dog'),), 
             //============================================================
             //BUTTON
             //============================================================
@@ -164,4 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+
+
 }

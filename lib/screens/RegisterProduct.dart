@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:hellotest03/services/LoggerService.dart';
+import 'package:hellotest03/services/RegisterProduct.dart';
 import 'package:hellotest03/services/ShowNotification.dart';
-import 'package:hellotest03/services/SignupUser.dart';
  
-class SignupPage extends StatefulWidget {
+class RegisterProductPage extends StatefulWidget {
   @override
-  _SignupState createState() => _SignupState();
+  _RegisterProductPage createState() => _RegisterProductPage();
 }
  
-class _SignupState extends State<SignupPage> {
+class _RegisterProductPage extends State<RegisterProductPage> {
   //===================================================================================
   // 1) DECLARE VARIABLE
   //===================================================================================
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _fullnameController = TextEditingController();  
-  final _lineidController = TextEditingController();    
-  final _mobilenoController = TextEditingController();  
-  final _companyController = TextEditingController();  
+  final _idController = TextEditingController();
+    final _descriptionController = TextEditingController();    
+  final _nameController = TextEditingController();
+  final _remarkController = TextEditingController();  
+  final _priceController = TextEditingController();  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Signup Page'),),
+      appBar: AppBar(title: Text('Product Page'),),
       body: SafeArea(child: ListView(    
         children: <Widget>[
           //==========================================================================
           // 1) TEXTBOX 
           //==========================================================================              
-          TextFormField(decoration: InputDecoration(labelText: '*E-mail', prefixIcon: Icon(Icons.email)),controller: _usernameController),
-          TextFormField(decoration: InputDecoration(labelText: '*Full Name', prefixIcon: Icon(Icons.near_me)),controller: _fullnameController,),
-          TextFormField(decoration: InputDecoration(labelText: '*Password', prefixIcon: Icon(Icons.vpn_key)),controller: _passwordController),                         
-          TextFormField(decoration: InputDecoration(labelText: 'Line ID', prefixIcon: Icon(Icons.network_cell)),controller: _lineidController),
-          TextFormField(decoration: InputDecoration(labelText: 'Mobile No', prefixIcon: Icon(Icons.phone)),controller: _mobilenoController,keyboardType: TextInputType.number,),                                    
-          TextFormField(decoration: InputDecoration(labelText: 'Company', prefixIcon: Icon(Icons.home)),controller: _companyController,),      
+         TextFormField(decoration: InputDecoration(labelText: '*Product ID', prefixIcon: Icon(Icons.email)),controller: _idController),
+          TextFormField(decoration: InputDecoration(labelText: '*Description', prefixIcon: Icon(Icons.near_me)),controller: _nameController,),
+          TextFormField(decoration: InputDecoration(labelText: '*name', prefixIcon: Icon(Icons.vpn_key)),controller: _descriptionController),                         
+          TextFormField(decoration: InputDecoration(labelText: 'remark', prefixIcon: Icon(Icons.network_cell)),controller: _remarkController),
+          TextFormField(decoration: InputDecoration(labelText: 'Price', prefixIcon: Icon(Icons.phone)),controller: _priceController,keyboardType: TextInputType.number,),
           //==========================================================================
           // 2) BUTTON
           //==========================================================================                
@@ -41,20 +39,20 @@ class _SignupState extends State<SignupPage> {
             //========================================================================
             // 3) PRINT LOG
             //======================================================================== 
-            logger.i("E-mail" + _usernameController.text);
-            logger.i("password " + _passwordController.text);
+            logger.i("id" + _idController.text);
+            logger.i("name " + _nameController.text);
             //========================================================================
             // 4) VALIDATE
             //========================================================================             
-            if (_usernameController.text == "" || _passwordController.text ==""){
-              showMessageBox(context, "Error", "Please enter username or password", actions: [dismissButton(context)]);
-              logger.e("Username or password cannot be null");              
+            if (_idController.text == "" || _nameController.text ==""){
+              showMessageBox(context, "Error", "Please enter ID or Name", actions: [dismissButton(context)]);
+              logger.e("ID or Name cannot be null");              
             } // IF
             //========================================================================
             // 5) SIGNUP USER
             //========================================================================             
             else {
-              signupUser(context, {"username": _usernameController.text,"password": _passwordController.text, "fullname":_fullnameController.text}, _usernameController.text);
+              registerProduct(context, {"productid": _idController.text,"name": _nameController.text, "description":_descriptionController.text, "remark":_remarkController.text, "price":_priceController.text}, _idController.text);
               //signupUser(context, {"username": _usernameController.text, "password": _passwordController.text,"fullname": _fullnameController.text,"lineid": _lineidController.text ,"mobileno": _mobilenoController.text ,"company": _companyController.text},_usernameController.text);              
             }  
             //========================================================================
